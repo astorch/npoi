@@ -2,22 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<AssemblyName>NPOI</AssemblyName>
-	<RootNamespace>NPOI</RootNamespace>
-	<SignAssembly>true</SignAssembly>
-	<AssemblyOriginatorKeyFile>npoi.snk</AssemblyOriginatorKeyFile>
+	<AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+    <PackageVersion>2.4.1</PackageVersion>
+    <Authors>NPOI Contributors, Firenym, astorch</Authors>
+    <Description>.NET Standard port of https://www.nuget.org/packages/NPOI.Core/2.4.1</Description>
+    <Copyright>Neuzilla Inc.</Copyright>
+    <PackageLicenseUrl>https://github.com/astorch/npoi/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/astorch/npoi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>npoi, core</PackageTags>
+    <DebugSymbols>True</DebugSymbols>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\github\npoi\main\NPOI.xml</DocumentationFile>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\font_metrics.properties" />
     <None Remove="Resources\functionMetadata.txt" />
   </ItemGroup>
-
   
   <ItemGroup>
     <EmbeddedResource Include="Resources\font_metrics.properties" />
@@ -25,10 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpZipLib" Version="1.0.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    <PackageReference Include="System.Drawing.Common" Version="4.5.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
+    <PackageReference Include="SharpZipLib" Version="1.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.6.0" />
   </ItemGroup>
 
 </Project>
