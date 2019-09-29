@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	<AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
-    <PackageVersion>2.4.1</PackageVersion>
+    <PackageVersion>2.4.2</PackageVersion>
     <Authors>NPOI Contributors, Firenym, astorch</Authors>
     <Description>.NET Standard port of https://www.nuget.org/packages/NPOI.Core/2.4.1</Description>
     <Copyright>Neuzilla Inc.</Copyright>
