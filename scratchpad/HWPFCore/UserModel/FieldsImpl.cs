@@ -101,47 +101,40 @@ namespace NPOI.HWPF.UserModel
             }
         }
 
-        public List<Field> GetFields(FieldsDocumentPart part)
-        {
+        public List<Field> GetFields(FieldsDocumentPart part) {
             Dictionary<int, FieldImpl> map = _fieldsByOffset[part];
-            if (map == null || map.Count == 0)
-                return new List<Field>();
+            if (map == null || map.Count == 0) return new List<Field>();
 
-            List<Field> vList=new List<Field>();
-            foreach(Field f in map.Values)
-            {
+            List<Field> vList = new List<Field>();
+            foreach (Field f in map.Values) {
                 vList.Add(f);
             }
+
             return vList;
         }
 
-        public Field GetFieldByStartOffset(FieldsDocumentPart documentPart,
-                int offset)
-        {
+        public Field GetFieldByStartOffset(FieldsDocumentPart documentPart, int offset) {
             Dictionary<int, FieldImpl> map = _fieldsByOffset[documentPart];
-            if (map == null || map.Count == 0)
-                return null;
+            if (map == null || map.Count == 0) return null;
 
+            if (!map.ContainsKey(offset)) return null;
+            
             return map[offset];
         }
 
-        private Dictionary<int, FieldImpl> ParseFieldStructure(
-                List<PlexOfField> plexOfFields)
-        {
+        private Dictionary<int, FieldImpl> ParseFieldStructure(List<PlexOfField> plexOfFields) {
             if (plexOfFields == null || plexOfFields.Count == 0)
                 return new Dictionary<int, FieldImpl>();
 
             plexOfFields.Sort(comparator);
-            List<FieldImpl> fields = new List<FieldImpl>(
-                    plexOfFields.Count / 3 + 1);
+            List<FieldImpl> fields = new List<FieldImpl>(plexOfFields.Count / 3 + 1);
             ParseFieldStructureImpl(plexOfFields, 0, plexOfFields.Count, fields);
 
-            Dictionary<int, FieldImpl> result = new Dictionary<int, FieldImpl>(
-                    fields.Count);
-            foreach (FieldImpl field in fields)
-            {
+            Dictionary<int, FieldImpl> result = new Dictionary<int, FieldImpl>(fields.Count);
+            foreach (FieldImpl field in fields) {
                 result.Add(field.GetFieldStartOffset(), field);
             }
+
             return result;
         }
 
