@@ -114,34 +114,35 @@ namespace NPOI.HWPF.UserModel
                 return;
 
             Dictionary<int, List<GenericPropertyNode>> result = new Dictionary<int, List<GenericPropertyNode>>();
-            for (int b = 0; b < bookmarksTables.GetDescriptorsFirstCount(); b++)
-            {
-                GenericPropertyNode property = bookmarksTables
-                        .GetDescriptorFirst(b);
+            for (int b = 0; b < bookmarksTables.GetDescriptorsFirstCount(); b++) {
+                GenericPropertyNode property = bookmarksTables.GetDescriptorFirst(b);
                 int positionKey = property.Start;
-                List<GenericPropertyNode> atPositionList = result[positionKey];
-                if (atPositionList == null)
-                {
+
+                if (!result.TryGetValue(positionKey, out List<GenericPropertyNode> atPositionList)) {
                     atPositionList = new List<GenericPropertyNode>();
-                    result[positionKey] = atPositionList;
+                    result.Add(positionKey, atPositionList);
                 }
+                
                 atPositionList.Add(property);
             }
 
             int counter = 0;
             int[] indices = new int[result.Count];
-            foreach (KeyValuePair<int, List<GenericPropertyNode>> entry in result)
-            {
+            
+            Dictionary<int, List<GenericPropertyNode>> updatedResult = new Dictionary<int, List<GenericPropertyNode>>(result.Count);
+            
+            foreach (KeyValuePair<int, List<GenericPropertyNode>> entry in result) {
                 indices[counter++] = entry.Key;
-                List<GenericPropertyNode> updated = new List<GenericPropertyNode>(
-                        entry.Value);
-                updated.Sort((IComparer<GenericPropertyNode>)PropertyNode.EndComparator.instance);
-                result[entry.Key] = updated;
+                
+                List<GenericPropertyNode> updated = new List<GenericPropertyNode>(entry.Value);
+                updated.Sort(PropertyNode.EndComparator.instance);
+                
+                updatedResult.Add(entry.Key, updated);
             }
             Array.Sort(indices);
 
-            this.sortedDescriptors = result;
-            this.sortedStartPositions = indices;
+            sortedDescriptors = updatedResult;
+            sortedStartPositions = indices;
         }
 
         internal class BookmarkImpl : Bookmark
