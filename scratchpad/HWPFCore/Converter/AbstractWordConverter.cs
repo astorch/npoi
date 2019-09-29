@@ -283,7 +283,7 @@ namespace NPOI.HWPF.Converter
             {
                 if (structure.Start != previous)
                 {
-                    Range subrange = new Range(previous, structure.Start, range);
+                    Range subrange = new Range(structure.Start, structure.End, range);
                     //{
                     //    public String toString()
                     //    {
