@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
-    <PackageVersion>2.3.2</PackageVersion>
+    <PackageVersion>2.3.3</PackageVersion>
     <Authors>NPOI Contributors, Firenym, astorch</Authors>
     <Description>.NET Standard port of https://www.nuget.org/packages/NPOI.HWPF/2.3.0</Description>
     <Copyright>Neuzilla Inc.</Copyright>
