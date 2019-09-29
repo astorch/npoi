@@ -3,9 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
-    <AssemblyName>NPOI.ScratchPad.HWPF</AssemblyName>
-    <RootNamespace>NPOI.HWPF</RootNamespace>
-    <PackageId>NPOI.HWPFCore</PackageId>
     <PackageVersion>2.3.2</PackageVersion>
     <Authors>NPOI Contributors, Firenym, astorch</Authors>
     <Description>.NET Standard port of https://www.nuget.org/packages/NPOI.HWPF/2.3.0</Description>
@@ -26,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NPOI" Version="2.4.1" />
+    <ProjectReference Include="..\..\main\NPOI.Core.csproj" />
   </ItemGroup>
 
 </Project>
